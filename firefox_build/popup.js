@@ -50,8 +50,16 @@ function save_options() {
       ERPIITKGP_question3: document.getElementById("question3").value
     },
     function() {
-      document.getElementById("status").innerHTML =
-        '<div class="alert alert-success" role="alert">Your credentials have been saved. Open <a href="https://erp.iitkgp.ac.in" target="_blank">ERP, IITKGP</a>.</div>';
+      const message = '<div class="alert alert-success" role="alert">Your credentials have been reset. Open <a href="https://erp.iitkgp.ac.in" target="_blank">ERP, IITKGP</a>.</div>';
+
+      const parser = new DOMParser();
+      const parsed = parser.parseFromString(message, `text/html`);
+      const tags = parsed.getElementsByTagName(`body`);
+
+      document.getElementById("status").innerHTML = "";
+      for (const tag of tags) {
+      	document.body.appendChild(tag);
+      }
     }
   );
 }
@@ -75,9 +83,18 @@ function show_open_if_already_saved() {
   chrome.storage.sync.get(results => {
     chrome.extension.getBackgroundPage().console.log("results are  ", results);
     let values = Object.values(results);
-    if (!values.includes(""))
-      document.getElementById("status").innerHTML =
-        '<div class="alert alert-success" role="alert">Your credentials have been saved. Open <a href="https://erp.iitkgp.ac.in" target="_blank">ERP, IITKGP</a>.</div>';
+    if (!values.includes("")){
+      const message = '<div class="alert alert-success" role="alert">Your credentials have been reset. Open <a href="https://erp.iitkgp.ac.in" target="_blank">ERP, IITKGP</a>.</div>';
+
+      const parser = new DOMParser();
+      const parsed = parser.parseFromString(message, `text/html`);
+      const tags = parsed.getElementsByTagName(`body`);
+
+      document.getElementById("status").innerHTML = "";
+      for (const tag of tags) {
+      	document.body.appendChild(tag);
+      }
+    }
   });
 }
 
@@ -102,8 +119,16 @@ function reset_options() {
       ERPIITKGP_question3: document.getElementById("question3").value
     },
     function() {
-      document.getElementById("status").innerHTML =
-        '<div class="alert alert-success" role="alert">Your credentials have been reset. Open <a href="https://erp.iitkgp.ac.in" target="_blank">ERP, IITKGP</a>.</div>';
+      const message = '<div class="alert alert-success" role="alert">Your credentials have been reset. Open <a href="https://erp.iitkgp.ac.in" target="_blank">ERP, IITKGP</a>.</div>';
+
+      const parser = new DOMParser();
+      const parsed = parser.parseFromString(message, `text/html`);
+      const tags = parsed.getElementsByTagName(`body`);
+
+      document.getElementById("status").innerHTML = "";
+      for (const tag of tags) {
+      	document.body.appendChild(tag);
+      }
     }
   );
 }
