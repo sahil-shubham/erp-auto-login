@@ -19,6 +19,13 @@ chrome.storage.sync.get(keys, function(authData) {
 	enterData(authData);
 });
 
+chrome.storage.local.get('enabled', data => {
+	if(!data.enabled){
+		throw Error("extension disabled.");
+		System.exit();
+	}
+})
+
 function stopper(){
 	if(sessionStorage.getItem("q1")=="1" && sessionStorage.getItem("q2")=="1" && sessionStorage.getItem("q3")=="1"){
 		alert("wrong credentials; Correct your details in the extension and open erp again in new tab/window");
